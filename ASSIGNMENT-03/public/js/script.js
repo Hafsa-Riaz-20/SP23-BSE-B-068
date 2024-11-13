@@ -5,7 +5,7 @@ document.querySelectorAll('.show-description').forEach(button => {
         const descriptionContainer = document.getElementById(`${projectId}-description`);
         
         // Fetch the description text from the project_descriptions folder
-        fetch(`project_descriptions/${projectId}.txt`)
+        fetch(`text/${projectId}.txt`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Failed to load description for ${projectId}`);
