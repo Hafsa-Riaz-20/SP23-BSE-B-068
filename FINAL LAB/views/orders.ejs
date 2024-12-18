@@ -1,0 +1,89 @@
+
+<%- include('./partials/menu.ejs') %>
+<div class="container mt-5">
+  <h3 class="text-center text-primary mb-4"><%- pageTitle %></h3>
+
+
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>
+            <a href="<%= buildQueryLink({ sort: '_id', order: sortField === '_id' && sortOrder === 'asc' ? 'desc' : 'asc' }) %>">
+              ID <%= sortField === '_id' ? (sortOrder === 'asc' ? '▲' : '▼') : '' %>
+            </a>
+          </th>
+          <th>Items</th>
+          <th>
+            <a href="<%= buildQueryLink({ sort: 'amount', order: sortField === 'amount' && sortOrder === 'asc' ? 'desc' : 'asc' }) %>">
+              Total <%= sortField === 'amount' ? (sortOrder === 'asc' ? '▲' : '▼') : '' %>
+            </a>
+          </th>
+          <th>
+            <a href="<%= buildQueryLink({ sort: 'createdAt', order: sortField === 'createdAt' && sortOrder === 'asc' ? 'desc' : 'asc' }) %>">
+              Time <%= sortField === 'createdAt' ? (sortOrder === 'asc' ? '▲' : '▼') : '' %>
+            </a>
+          </th>
+          <th>
+            Address
+          </th>
+          <th>Payment</th>
+          <th>Delivery</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let index = 0; index < orders.length; index++) { %>
+          <tr style="border-bottom: 1px solid #ccc;">
+            <td class="text-center"><%= orders[index]._id %></td>
+            <td>
+              <table class="table table-bordered table-sm mb-0">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% orders[index].items.forEach(item => { %>
+                    <tr>
+                      <td><%= item.product?.title || 'Unknown Product' %></td>
+                      <td class="text-center"><%= item.quantity %></td>
+                      <td class="text-center">$<%= item.price %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </td>
+            <td class="text-center">$<%= orders[index].amount %></td>
+            <td class="text-center"><%= new Date(orders[index].createdAt).toLocaleString() %></td>
+            <td class="text-center"><%= orders[index].address %></td>
+            <td class="text-center"><%= orders[index].paymentMethod %></br><%= orders[index].paymentStatus %></td>
+            <td class="text-center"><%= orders[index].deliveryStatus %></td>
+
+            
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  
+
+
+  <div class="mb-5">
+    <div class="text-center mt-2 mb-3" >
+      Page <%= page %> of <%= totalPages %>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+          <li class="page-item <%= page==1? "disabled":"" %>"><a class="page-link" href="<%= buildQueryLink({page:Number(page) - 1}) %>">Previous</a></li>
+          <% for( let index = 1; index <= totalPages; index++ ) { %>
+          <li class="page-item <%= page==index?"disabled":"" %> "><a class="page-link" href="<%= buildQueryLink({page: index}) %>"><%= index %></a></li>
+        <% } %>
+        <li class="page-item <%= page==totalPages?"disabled":"" %> "><a class="page-link" href="/<%= buildQueryLink({page: Number(page) + 1}) %>">Next</a></li>
+      </ul>
+    </nav>  
+  </div>
+</div>
+<%- include('./partials/footer.ejs') %>

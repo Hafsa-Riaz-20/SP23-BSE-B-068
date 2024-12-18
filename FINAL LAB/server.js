@@ -9,6 +9,7 @@ let adminRouter = require("./routes/admin.controller");
 let adminCategoriesRouter = require("./routes/categories.controller");
 let adminOrdersRouter = require('./routes/admin-orders.controller');
 let productsRouter = require("./routes/products.controller");
+let ordersRouter = require("./routes/orders.controller");
 let cartRouter = require("./routes/cart.controller");
 let authMiddleware = require("./middlewares/auth-middleware");
 let siteMiddleware = require("./middlewares/site-middleware");
@@ -91,6 +92,7 @@ server.use(authMiddleware);
 
 server.use(productsRouter);
 server.use(cartRouter);
+server.use(ordersRouter);
 
 
 server.use(adminRoleMiddleware);
