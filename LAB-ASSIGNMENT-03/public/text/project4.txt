@@ -1,0 +1,1 @@
+A task manager app for mobile devices, built using React Native. It helps users organize and manage their daily tasks efficiently.
