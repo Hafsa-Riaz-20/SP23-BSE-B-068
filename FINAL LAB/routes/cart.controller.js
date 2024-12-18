@@ -62,6 +62,8 @@ router.post("/cart/order", async (req, res) => {
   const cart = req.session.cart || [];
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+
+
   const order = new Order({
     user: req.session.user._id,
     items: cart.map(item => ({
@@ -71,7 +73,7 @@ router.post("/cart/order", async (req, res) => {
     })),
     amount: total,
     paymentMethod: req.body.paymentMethod  || 'Cash',
-    address: req.body.address || ''
+    address: req.body.address_1 + ', ' +  req.body.address_2 + ', ' + req.body.address_3,
   });
 
   await order.save();
