@@ -53,4 +53,13 @@ router.get("/admin/orders/delete/:id", async (req, res) => {
   return res.redirect("/admin/orders");
 });
 
+router.get("/admin/orders/confirm/:id", async (req, res) => {
+  await Order.findByIdAndUpdate(req.params.id, {
+    deliveryStatus: 'Delivered'
+  });
+  req.flash("success", "Order delivered successfully");
+
+  return res.redirect("/admin/orders");
+});
+
 module.exports = router;

@@ -10,9 +10,21 @@ let orderSchema = mongoose.Schema(
   {
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, 
   amount: Number, 
-  paymentMethod: String, 
+  paymentMethod: {
+    type: String,
+    default: 'Cash'
+  },
+  paymentStatus: {
+    type: String,
+    default: 'Pending'
+  },
   items : [orderProductsSchema], 
-  address: String 
+  address: String,
+  deliveryStatus: {
+    type: String,
+    default: 'Pending'
+  },
+
 }, { timestamps: true }); 
 
 let OrderModel = mongoose.model("Order", orderSchema);
