@@ -1,0 +1,1 @@
+A personal blog website built using HTML, CSS, and JavaScript. It showcases my experiences, thoughts, and projects.
