@@ -13,7 +13,6 @@ let cartRouter = require("./routes/cart.controller");
 let authMiddleware = require("./middlewares/auth-middleware");
 let siteMiddleware = require("./middlewares/site-middleware");
 let adminRoleMiddleware = require("./middlewares/role-middleware")
-
 let server = express();
 let flash = require('connect-flash');
 server.use(session({

@@ -1,1 +1,0 @@
-This is a weather app that provides real-time weather updates based on the user's location. It uses the OpenWeatherMap API to fetch data and displays the weather forecast for the next 7 days.

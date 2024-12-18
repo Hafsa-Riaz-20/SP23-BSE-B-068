@@ -1,1 +1,0 @@
-An AI chatbot powered by natural language processing. It can answer questions, assist with customer service, and engage in casual conversation.
