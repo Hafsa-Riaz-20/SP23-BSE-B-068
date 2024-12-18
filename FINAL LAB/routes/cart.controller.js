@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require("../models/product.model");
 const Order = require("../models/order.model");
 
-// Initialize cart in session if it doesn't exist
+
 router.use((req, res, next) => {
   if (!req.session.cart) {
     req.session.cart = [];

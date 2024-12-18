@@ -40,7 +40,7 @@ router.post(
 
 router.post(
   "/admin/createForm",
-  uploadProductImage.single("picture"), // Ensure "picture" matches the form field name
+  uploadProductImage.single("picture"), 
   async (req, res) => {
     try {
       const { title, description, price } = req.body;

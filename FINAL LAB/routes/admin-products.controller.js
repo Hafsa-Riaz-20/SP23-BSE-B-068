@@ -27,10 +27,10 @@ router.get("/admin/products", async (req, res) => {
   let totalRecords = await Product.countDocuments(filters);
   let totalPages = Math.ceil(totalRecords / limit); 
 
-  let products = await Product.find(filters) // filter
-                .sort({ [sortField]: sortOrder ==  "desc" ? -1 : 1 }) //sorting
-                .skip((page-1)*limit) //pagination start
-                .limit(limit);       //pagination end
+  let products = await Product.find(filters) 
+                .sort({ [sortField]: sortOrder ==  "desc" ? -1 : 1 }) 
+                .skip((page-1)*limit) 
+                .limit(limit);       
 
   res.locals.buildQueryLink = (object) => {
     const query = { ...req.query, ...object };

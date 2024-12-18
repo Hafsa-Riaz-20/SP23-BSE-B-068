@@ -82,29 +82,17 @@ server.get("/locations", (req, res) => {
   res.render("locations");
 });
 
-server.use(authMiddleware); // Anything up this line don't need to be login to access.
-
-
-//User routes
-server.use(productsRouter);
-server.use(cartRouter);
 server.get("/index", (req, res) => {
   res.render("index");
 });
-server.get("/cart", (req, res) => {
-  // Mock cart data
-  const cart = {
-    items: [
-      { name: "Sofa", price: 999.99, quantity: 1, image: "/assets/sofa.jpg" },
-      { name: "Dining Table", price: 599.99, quantity: 1, image: "/assets/dining-table.jpg" }
-    ],
-    total: 1599.98
-  };
-  res.render("cart", { cart });
-});
+
+server.use(authMiddleware); 
 
 
-// Admin routes
+server.use(productsRouter);
+server.use(cartRouter);
+
+
 server.use(adminRoleMiddleware);
 server.use(adminProductsRouter);
 server.use(adminRouter);
